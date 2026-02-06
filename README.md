@@ -1,5 +1,5 @@
 # mihomo
-mihomo裸核跑server和win_client
+mihomo裸核跑server和win_client，windows上运行之后可以通过在线面板进行管理：https://yacd.metacubex.one/#/proxies
 
 # 设置时区（例如上海）
 apt install tzdata
