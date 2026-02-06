@@ -1,0 +1,40 @@
+log-level: error
+listeners:
+- name: gohome
+  type: vless  # 详情请看https://wiki.metacubex.one/config/inbound/listeners/vless/
+  port: 13827
+  listen: 0.0.0.0
+  rule: sub-rule1
+  users:
+    - username: 1
+      uuid: 9d0cb9d0-964f-4ef6-897d-6c6b3ccf9e68
+      flow: xtls-rprx-vision
+  reality-config:
+    dest: cloudflare.com:443
+    private-key: jNXHt1yRo0vDuchQlIP6Z0ZvjT3KtzVI-T4E7RoLJS0  # 可由 mihomo generate reality-keypair 命令生成
+    short-id:
+      - 0123456789abcdef
+    server-names:
+      - cloudflare.com
+
+sub-rules:
+  sub-rule1:
+    - AND,((DST-PORT,8080),(IP-CIDR,192.168.31.281/32)),DIRECT  # 家里要放行的设备ip+端口
+    - IP-CIDR,10.0.0.0/8,REJECT
+    - IP-CIDR,100.64.0.0/10,REJECT
+    - IP-CIDR,127.0.0.0/8,REJECT
+    - IP-CIDR,169.254.0.0/16,REJECT
+    - IP-CIDR,172.16.0.0/12,REJECT
+    - IP-CIDR,192.0.0.0/24,REJECT
+    - IP-CIDR,192.0.2.0/24,REJECT
+    - IP-CIDR,192.168.0.0/16,REJECT
+    - IP-CIDR,198.18.0.0/15,REJECT
+    - IP-CIDR,198.51.100.0/24,REJECT
+    - IP-CIDR,203.0.113.0/24,REJECT
+    - IP-CIDR,224.0.0.0/4,REJECT
+    - IP-CIDR,240.0.0.0/4,REJECT
+    - IP-CIDR,fd00::/8,REJECT
+    - IP-CIDR,fe80::/10,REJECT
+    - IP-CIDR,fc00::/7,REJECT
+    - IP-CIDR,::1/128,REJECT
+    - MATCH,DIRECT
