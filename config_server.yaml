@@ -1,6 +1,6 @@
 log-level: error
 listeners:
-- name: gohome
+- name: goHome
   type: vless  # 详情请看https://wiki.metacubex.one/config/inbound/listeners/vless/
   port: 13827
   listen: 0.0.0.0
